@@ -15,7 +15,7 @@ export interface CarsResponse {
   cars: Car[];
 }
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://millionmiles.onrender.com";
 
 export async function fetchCars(): Promise<CarsResponse> {
   const res = await fetch(`${API_BASE}/cars`, { next: { revalidate: 3600 } });
