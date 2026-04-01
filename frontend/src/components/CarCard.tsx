@@ -19,7 +19,7 @@ export function CarCard({ car }: CarCardProps) {
       <div className="relative h-52 bg-carbon overflow-hidden">
         {car.image ? (
           <img
-            src={car.image}
+            src={`https://millionmiles.onrender.com/image?url=${encodeURIComponent(car.image)}`}
             alt={title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {

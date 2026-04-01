@@ -76,3 +76,15 @@ def get_car(index: int):
     if index < 0 or index >= len(cars):
         raise HTTPException(status_code=404, detail="Car not found")
     return cars[index]
+
+import httpx
+from fastapi import Response
+
+@app.get("/image")
+async def proxy_image(url: str):
+    async with httpx.AsyncClient() as client:
+        r = await client.get(url, headers={
+            "Referer": "https://www.encar.com/",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        })
+    return Response(content=r.content, media_type="image/jpeg")
