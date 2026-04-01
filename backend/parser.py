@@ -9,101 +9,112 @@ from playwright.async_api import async_playwright, TimeoutError as PlaywrightTim
 OUTPUT_FILE = Path(__file__).parent / "cars.json"
 TARGET_COUNT = 30
 
-ENCAR_URL = (
-    "https://www.encar.com/dc/dc_carsearchlist.do?carType=kor"
-    "#!%7B%22action%22%3A%22(And.Hidden.N._.CarType.Y.)%22"
-    "%2C%22toggle%22%3A%7B%7D%2C%22layer%22%3A%22%22"
-    "%2C%22sort%22%3A%22ModifiedDate%22%2C%22page%22%3A1%2C%22limit%22%3A20%7D"
+# Прямой API запрос — надёжнее чем DOM
+API_URL = (
+    "https://api.encar.com/search/car/list/general"
+    "?count=true"
+    "&q=(And.Hidden.N._.CarType.Y.)"
+    "&sr=%7CModifiedDate%7C0%7C{limit}"
+    "&fields=Manufacturer,Model,Badge,FormYear,Mileage,Price,Photo,Id"
 )
 
 
-def parse_year(text: str) -> str:
-    m = re.search(r"(\d{2,4})년", text)
-    if m:
-        y = int(m.group(1))
-        if y < 100:
-            y = 2000 + y if y <= 50 else 1900 + y
-        return str(y)
-    m4 = re.search(r"(20\d{2}|19\d{2})", text)
-    return m4.group(1) if m4 else text.strip()
+async def fetch_via_api(page) -> list[dict]:
+    """Получаем данные через публичный JSON API Encar."""
+    url = API_URL.format(limit=TARGET_COUNT)
+    print(f"[api] Fetching: {url}")
+
+    result = await page.evaluate(f"""
+        async () => {{
+            try {{
+                const r = await fetch("{url}", {{
+                    headers: {{
+                        "Accept": "application/json",
+                        "Referer": "https://www.encar.com/"
+                    }}
+                }});
+                if (!r.ok) return {{ error: r.status }};
+                return await r.json();
+            }} catch(e) {{
+                return {{ error: e.toString() }};
+            }}
+        }}
+    """)
+
+    if not result or result.get("error"):
+        print(f"[api] Error: {result}")
+        return []
+
+    raw_list = result.get("SearchResults") or result.get("Cars") or []
+    print(f"[api] Got {len(raw_list)} results")
+
+    cars = []
+    for item in raw_list:
+        try:
+            car = parse_api_item(item)
+            if car:
+                cars.append(car)
+                print(f"  [{len(cars):02d}] {car['brand']} {car['model']} | {car['year']} | {car['mileage']} | {car['price']}")
+        except Exception as e:
+            print(f"  [skip] {e}")
+
+    return cars
 
 
-async def get_text(el, selector: str) -> str:
-    node = await el.query_selector(selector)
-    if not node:
-        return ""
-    return (await node.inner_text()).strip()
+def parse_api_item(item: dict) -> dict | None:
+    brand = (item.get("Manufacturer") or item.get("MakerName") or "").strip()
+    model = (item.get("Model") or item.get("ModelName") or "").strip()
+    badge = (item.get("Badge") or item.get("BadgeName") or "").strip()
+    full_model = f"{model} {badge}".strip()
 
+    # Год: FormYear обычно 6 цифр — 202303 = март 2023
+    form_year = str(item.get("FormYear") or item.get("Year") or "")
+    year = form_year[:4] if len(form_year) >= 4 else "N/A"
 
-async def extract_car(li) -> dict | None:
-    title_raw = await get_text(li, ".list_ttl, strong.list_ttl")
-    if not title_raw:
-        title_raw = await get_text(li, "strong")
+    # Пробег
+    mileage_raw = item.get("Mileage") or 0
+    mileage = f"{int(mileage_raw):,}km" if mileage_raw else "N/A"
 
-    parts = title_raw.split() if title_raw else []
-    brand = parts[0] if parts else ""
-    model = " ".join(parts[1:3]) if len(parts) > 1 else ""
+    # Цена (в единицах 만원)
+    price_raw = item.get("Price") or 0
+    price = f"{int(price_raw):,}만원" if price_raw else "N/A"
 
-    info_els = await li.query_selector_all(".list_info li, ul.list_info li")
-    info_texts = [((await el.inner_text()).strip()) for el in info_els]
+    # Фото
+    car_id = str(item.get("Id") or item.get("CarNo") or "")
+    photo = item.get("Photo") or item.get("ThumbImage") or ""
+    if photo and not photo.startswith("http"):
+        photo = "https://ci.encar.com" + photo
+    if not photo and car_id:
+        photo = f"https://ci.encar.com/carpicture/carpicture01/pic{car_id[:4]}/{car_id}_001.jpg"
 
-    year = ""
-    mileage = ""
-    for t in info_texts:
-        if "년" in t and not year:
-            year = parse_year(t)
-        elif "km" in t.lower() and not mileage:
-            mileage = t
+    detail_url = f"https://www.encar.com/dc/dc_cardetailview.do?carid={car_id}" if car_id else ""
 
-    price = await get_text(li, ".price_wrap, .price, [class*='price']")
-    if not price:
-        price_el = await li.query_selector("em, strong, span")
-        if price_el:
-            candidate = (await price_el.inner_text()).strip()
-            if "만원" in candidate or "만" in candidate:
-                price = candidate
-
-    img_el = await li.query_selector("img")
-    image_url = ""
-    if img_el:
-        src = await img_el.get_attribute("src") or ""
-        data_src = await img_el.get_attribute("data-src") or ""
-        raw = data_src or src
-        if raw.startswith("//"):
-            raw = "https:" + raw
-        image_url = raw
-
-    a_el = await li.query_selector("a[href]")
-    detail_url = ""
-    if a_el:
-        href = await a_el.get_attribute("href") or ""
-        if href.startswith("/"):
-            detail_url = "https://www.encar.com" + href
-        elif href.startswith("http"):
-            detail_url = href
-
-    if not brand and not title_raw:
+    if not brand and not model:
         return None
 
     return {
         "brand": brand,
-        "model": model,
-        "year": year or "N/A",
-        "mileage": mileage or "N/A",
-        "price": price or "N/A",
-        "image": image_url,
+        "model": full_model,
+        "year": year,
+        "mileage": mileage,
+        "price": price,
+        "image": photo,
         "detail_url": detail_url,
         "scraped_at": datetime.now(timezone.utc).isoformat(),
     }
 
 
 async def parse_cars() -> list[dict]:
-    cars: list[dict] = []
-
     async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=True,
-            args=["--no-sandbox", "--disable-dev-shm-usage"],
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-gpu",
+                "--single-process",
+            ],
         )
         context = await browser.new_context(
             user_agent=(
@@ -115,57 +126,138 @@ async def parse_cars() -> list[dict]:
         )
         page = await context.new_page()
 
-        print("Navigating...")
+        # Сначала открываем сайт чтобы получить cookies/referer
+        print("[parser] Opening Encar homepage...")
         try:
-            await page.goto(ENCAR_URL, wait_until="domcontentloaded", timeout=30_000)
+            await page.goto(
+                "https://www.encar.com",
+                wait_until="domcontentloaded",
+                timeout=30_000,
+            )
         except PlaywrightTimeoutError:
-            print("  [warn] Initial load timed out, continuing...")
-
-        try:
-            await page.wait_for_selector("ul.car_list li", timeout=20_000)
-        except PlaywrightTimeoutError:
-            print("  [warn] ul.car_list not found within timeout")
+            print("[parser] Homepage timeout, continuing...")
 
         await page.wait_for_timeout(2_000)
 
-        page_num = 1
+        # Пробуем API
+        cars = await fetch_via_api(page)
 
-        while len(cars) < TARGET_COUNT:
-            items = await page.query_selector_all("ul.car_list li")
-            print(f"Page {page_num}: {len(items)} items found")
-
-            for li in items:
-                if len(cars) >= TARGET_COUNT:
-                    break
-                try:
-                    car = await extract_car(li)
-                    if car:
-                        cars.append(car)
-                        print(f"  [{len(cars):02d}] {car['brand']} {car['model']} "
-                              f"| {car['year']} | {car['mileage']} | {car['price']}")
-                except Exception as exc:
-                    print(f"  [skip] {exc}")
-
-            if len(cars) >= TARGET_COUNT:
-                break
-
-            next_sel = "a.next, button.next, .paginate a.next, [class*='next']"
-            next_btn = await page.query_selector(next_sel)
-            if not next_btn:
-                print("No next-page button found — stopping.")
-                break
-            try:
-                await next_btn.click()
-                await page.wait_for_selector("ul.car_list li", timeout=10_000)
-                await page.wait_for_timeout(1_500)
-                page_num += 1
-            except Exception as exc:
-                print(f"Pagination failed: {exc}")
-                break
+        # Если API не дал результатов — fallback на DOM парсинг
+        if not cars:
+            print("[parser] API returned nothing, trying DOM fallback...")
+            cars = await parse_dom_fallback(page)
 
         await browser.close()
+    return cars
+
+
+async def parse_dom_fallback(page) -> list[dict]:
+    """Запасной вариант — парсим HTML напрямую."""
+    print("[dom] Navigating to listing page...")
+    try:
+        await page.goto(
+            "https://www.encar.com/dc/dc_carsearchlist.do?carType=kor",
+            wait_until="networkidle",
+            timeout=40_000,
+        )
+    except PlaywrightTimeoutError:
+        pass
+
+    await page.wait_for_timeout(3_000)
+
+    # Пробуем разные возможные селекторы
+    selectors = ["tr.list", "ul.car_list li", ".car_list li", "li.item"]
+    items = []
+    for sel in selectors:
+        items = await page.query_selector_all(sel)
+        if items:
+            print(f"[dom] Found {len(items)} items with selector: {sel}")
+            break
+
+    if not items:
+        # Дампим часть HTML для диагностики
+        body = await page.inner_text("body")
+        print(f"[dom] No items found. Page text preview:\n{body[:500]}")
+        return []
+
+    cars = []
+    for item in items[:TARGET_COUNT]:
+        try:
+            car = await extract_from_row(item)
+            if car:
+                cars.append(car)
+                print(f"  [{len(cars):02d}] {car['brand']} {car['model']} | {car['year']} | {car['price']}")
+        except Exception as e:
+            print(f"  [skip] {e}")
 
     return cars
+
+
+async def extract_from_row(el) -> dict | None:
+    """Извлекаем данные из строки/элемента списка."""
+    # Получаем весь текст ячеек
+    cells = await el.query_selector_all("td, li")
+    texts = []
+    for c in cells:
+        t = (await c.inner_text()).strip()
+        if t and t not in texts:
+            texts.append(t)
+
+    if not texts:
+        return None
+
+    # Ищем год
+    year = "N/A"
+    for t in texts:
+        m = re.search(r"(20\d{2}|19\d{2})", t)
+        if m:
+            year = m.group(1)
+            break
+
+    # Ищем пробег
+    mileage = "N/A"
+    for t in texts:
+        m = re.search(r"([\d,]+\s*km)", t, re.IGNORECASE)
+        if m:
+            mileage = m.group(1).strip()
+            break
+
+    # Ищем цену
+    price = "N/A"
+    for t in texts:
+        m = re.search(r"([\d,]+\s*만원)", t)
+        if m:
+            price = m.group(1).strip()
+            break
+
+    # Изображение
+    img_el = await el.query_selector("img")
+    image_url = ""
+    if img_el:
+        src = (await img_el.get_attribute("data-src") or
+               await img_el.get_attribute("src") or "")
+        if src.startswith("//"):
+            src = "https:" + src
+        image_url = src
+
+    # Ссылка
+    a_el = await el.query_selector("a[href*='carid']")
+    detail_url = ""
+    if a_el:
+        href = await a_el.get_attribute("href") or ""
+        detail_url = ("https://www.encar.com" + href
+                      if href.startswith("/") else href)
+
+    return {
+        "brand": texts[0] if texts else "",
+        "model": texts[1] if len(texts) > 1 else "",
+        "year": year,
+        "mileage": mileage,
+        "price": price,
+        "image": image_url,
+        "detail_url": detail_url,
+        "scraped_at": datetime.now(timezone.utc).isoformat(),
+    }
 
 
 def save(cars: list[dict]) -> None:
@@ -180,10 +272,10 @@ def save(cars: list[dict]) -> None:
 
 
 async def main() -> None:
-    print(f"=== Encar parser start  {datetime.now(timezone.utc).isoformat()} ===")
+    print(f"=== Encar parser start {datetime.now(timezone.utc).isoformat()} ===")
     cars = await parse_cars()
     if not cars:
-        print("WARNING: 0 cars collected. DOM may have changed — re-run the debug block.")
+        print("WARNING: 0 cars collected.")
     save(cars)
     print("=== Done ===")
 
