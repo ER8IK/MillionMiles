@@ -1,14 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { Car } from "@/lib/api";
 
 interface CarCardProps {
   car: Car;
-  index: number;
 }
 
-export function CarCard({ car, index }: CarCardProps) {
+export function CarCard({ car }: CarCardProps) {
   const title = [car.brand, car.model].filter(Boolean).join(" ") || "Unknown Vehicle";
 
   return (
@@ -20,14 +18,12 @@ export function CarCard({ car, index }: CarCardProps) {
       {/* Image */}
       <div className="relative h-52 bg-carbon overflow-hidden">
         {car.image ? (
-          <Image
+          <img
             src={car.image}
             alt={title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = "/placeholder.svg";
+              (e.target as HTMLImageElement).style.display = "none";
             }}
           />
         ) : (
@@ -102,7 +98,6 @@ export function CarCardSkeleton() {
   );
 }
 
-// Mini SVG icons
 function OdometerIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
