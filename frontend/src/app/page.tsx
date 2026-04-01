@@ -5,8 +5,6 @@ import { CarsGrid } from "@/components/CarsGrid";
 import { AnnouncementBanner } from "@/components/AnnouncementBanner";
 import { fetchCars } from "@/lib/api";
 
-export const revalidate = 3600; // ISR: revalidate every hour
-
 async function CarsSection() {
   let data;
   try {
