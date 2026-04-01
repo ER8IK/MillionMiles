@@ -9,7 +9,6 @@ from playwright.async_api import async_playwright, TimeoutError as PlaywrightTim
 OUTPUT_FILE = Path(__file__).parent / "cars.json"
 TARGET_COUNT = 30
 
-# Прямой API запрос — надёжнее чем DOM
 API_URL = (
     "https://api.encar.com/search/car/list/general"
     "?count=true"
@@ -20,7 +19,6 @@ API_URL = (
 
 
 async def fetch_via_api(page) -> list[dict]:
-    """Получаем данные через публичный JSON API Encar."""
     url = API_URL.format(limit=TARGET_COUNT)
     print(f"[api] Fetching: {url}")
 
@@ -67,25 +65,27 @@ def parse_api_item(item: dict) -> dict | None:
     badge = (item.get("Badge") or item.get("BadgeName") or "").strip()
     full_model = f"{model} {badge}".strip()
 
-    # Год: FormYear обычно 6 цифр — 202303 = март 2023
     form_year = str(item.get("FormYear") or item.get("Year") or "")
     year = form_year[:4] if len(form_year) >= 4 else "N/A"
 
-    # Пробег
     mileage_raw = item.get("Mileage") or 0
     mileage = f"{int(mileage_raw):,}km" if mileage_raw else "N/A"
 
-    # Цена (в единицах 만원)
     price_raw = item.get("Price") or 0
     price = f"{int(price_raw):,}만원" if price_raw else "N/A"
 
-    # Фото
     car_id = str(item.get("Id") or item.get("CarNo") or "")
     photo = item.get("Photo") or item.get("ThumbImage") or ""
-    if photo and not photo.startswith("http"):
-        photo = "https://ci.encar.com" + photo
-    if not photo and car_id:
-        photo = f"https://ci.encar.com/carpicture/carpicture01/pic{car_id[:4]}/{car_id}_001.jpg"
+
+    if photo:
+        if photo.startswith("//"):
+            photo = "https:" + photo
+        elif not photo.startswith("http"):
+            photo = "https://ci.encar.com" + photo
+        if photo.endswith("_"):
+            photo = photo + "001.jpg"
+    elif car_id:
+        photo = f"https://ci.encar.com/carpicture01/pic{car_id[:4]}/{car_id}_001.jpg"
 
     detail_url = f"https://www.encar.com/dc/dc_cardetailview.do?carid={car_id}" if car_id else ""
 
@@ -126,7 +126,6 @@ async def parse_cars() -> list[dict]:
         )
         page = await context.new_page()
 
-        # Сначала открываем сайт чтобы получить cookies/referer
         print("[parser] Opening Encar homepage...")
         try:
             await page.goto(
@@ -139,10 +138,8 @@ async def parse_cars() -> list[dict]:
 
         await page.wait_for_timeout(2_000)
 
-        # Пробуем API
         cars = await fetch_via_api(page)
 
-        # Если API не дал результатов — fallback на DOM парсинг
         if not cars:
             print("[parser] API returned nothing, trying DOM fallback...")
             cars = await parse_dom_fallback(page)
@@ -152,7 +149,6 @@ async def parse_cars() -> list[dict]:
 
 
 async def parse_dom_fallback(page) -> list[dict]:
-    """Запасной вариант — парсим HTML напрямую."""
     print("[dom] Navigating to listing page...")
     try:
         await page.goto(
@@ -165,7 +161,6 @@ async def parse_dom_fallback(page) -> list[dict]:
 
     await page.wait_for_timeout(3_000)
 
-    # Пробуем разные возможные селекторы
     selectors = ["tr.list", "ul.car_list li", ".car_list li", "li.item"]
     items = []
     for sel in selectors:
@@ -175,7 +170,6 @@ async def parse_dom_fallback(page) -> list[dict]:
             break
 
     if not items:
-        # Дампим часть HTML для диагностики
         body = await page.inner_text("body")
         print(f"[dom] No items found. Page text preview:\n{body[:500]}")
         return []
@@ -194,8 +188,6 @@ async def parse_dom_fallback(page) -> list[dict]:
 
 
 async def extract_from_row(el) -> dict | None:
-    """Извлекаем данные из строки/элемента списка."""
-    # Получаем весь текст ячеек
     cells = await el.query_selector_all("td, li")
     texts = []
     for c in cells:
@@ -206,7 +198,6 @@ async def extract_from_row(el) -> dict | None:
     if not texts:
         return None
 
-    # Ищем год
     year = "N/A"
     for t in texts:
         m = re.search(r"(20\d{2}|19\d{2})", t)
@@ -214,7 +205,6 @@ async def extract_from_row(el) -> dict | None:
             year = m.group(1)
             break
 
-    # Ищем пробег
     mileage = "N/A"
     for t in texts:
         m = re.search(r"([\d,]+\s*km)", t, re.IGNORECASE)
@@ -222,7 +212,6 @@ async def extract_from_row(el) -> dict | None:
             mileage = m.group(1).strip()
             break
 
-    # Ищем цену
     price = "N/A"
     for t in texts:
         m = re.search(r"([\d,]+\s*만원)", t)
@@ -230,7 +219,6 @@ async def extract_from_row(el) -> dict | None:
             price = m.group(1).strip()
             break
 
-    # Изображение
     img_el = await el.query_selector("img")
     image_url = ""
     if img_el:
@@ -238,9 +226,10 @@ async def extract_from_row(el) -> dict | None:
                await img_el.get_attribute("src") or "")
         if src.startswith("//"):
             src = "https:" + src
+        if src.endswith("_"):
+            src = src + "001.jpg"
         image_url = src
 
-    # Ссылка
     a_el = await el.query_selector("a[href*='carid']")
     detail_url = ""
     if a_el:
