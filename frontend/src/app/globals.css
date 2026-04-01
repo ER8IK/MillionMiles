@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Playfair Display", serif;
+  --font-body: "DM Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0f;
+}
+
+/* Gold shimmer skeleton */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #1e1e2e 0px,
+    #2a2a3e 40px,
+    #1e1e2e 80px
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+/* Subtle noise grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Staggered card animations */
+.car-card:nth-child(1)  { animation-delay: 0.05s; }
+.car-card:nth-child(2)  { animation-delay: 0.10s; }
+.car-card:nth-child(3)  { animation-delay: 0.15s; }
+.car-card:nth-child(4)  { animation-delay: 0.20s; }
+.car-card:nth-child(5)  { animation-delay: 0.25s; }
+.car-card:nth-child(6)  { animation-delay: 0.30s; }
+.car-card:nth-child(7)  { animation-delay: 0.35s; }
+.car-card:nth-child(8)  { animation-delay: 0.40s; }
+.car-card:nth-child(9)  { animation-delay: 0.45s; }
+.car-card:nth-child(10) { animation-delay: 0.50s; }
+.car-card:nth-child(n+11) { animation-delay: 0.55s; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a0f; }
+::-webkit-scrollbar-thumb { background: #c9a84c44; border-radius: 2px; }
