@@ -18,7 +18,7 @@ export interface CarsResponse {
 const API_BASE = "https://millionmiles.onrender.com";
 
 export async function fetchCars(): Promise<CarsResponse> {
-  const res = await fetch(`${API_BASE}/cars`, { next: { revalidate: 3600 } });
+  const res = await fetch(`${API_BASE}/cars`, { cache: "no-store" });
   if (!res.ok) throw new Error(`API error: ${res.status}`);
   return res.json();
 }
