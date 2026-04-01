@@ -1,306 +1,306 @@
 {
-  "updated_at": "2026-04-01T07:34:19.090619+00:00",
+  "updated_at": "2026-04-01T08:27:30.235400+00:00",
   "count": 30,
   "cars": [
-    {
-      "brand": "쉐보레(GM대우)",
-      "model": "더 뉴 트랙스 1.4 LT",
-      "year": "2021",
-      "mileage": "60,134km",
-      "price": "1,190만원",
-      "image": "https://ci.encar.com/carpicture01/pic4131/41312942_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41316932",
-      "scraped_at": "2026-04-01T07:34:00.499300+00:00"
-    },
-    {
-      "brand": "현대",
-      "model": "올 뉴 투싼 디젤 2.0 2WD",
-      "year": "2018",
-      "mileage": "73,728km",
-      "price": "1,590만원",
-      "image": "https://ci.encar.com/carpicture05/pic4135/41354763_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41359389",
-      "scraped_at": "2026-04-01T07:34:00.499463+00:00"
-    },
     {
       "brand": "현대",
       "model": "캐스퍼 터보 인스퍼레이션",
       "year": "2023",
-      "mileage": "66,607km",
-      "price": "1,630만원",
-      "image": "https://ci.encar.com/carpicture09/pic4049/40497246_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40497792",
-      "scraped_at": "2026-04-01T07:34:00.499479+00:00"
-    },
-    {
-      "brand": "현대",
-      "model": "더 뉴 아반떼 (CN7) 1.6",
-      "year": "2024",
-      "mileage": "15,197km",
-      "price": "2,390만원",
-      "image": "https://ci.encar.com/carpicture01/pic4131/41312957_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41317277",
-      "scraped_at": "2026-04-01T07:34:00.499493+00:00"
-    },
-    {
-      "brand": "제네시스",
-      "model": "GV80 2.5T 가솔린 AWD",
-      "year": "2023",
-      "mileage": "43,225km",
-      "price": "5,850만원",
-      "image": "https://ci.encar.com/carpicture10/pic4070/40709846_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40710645",
-      "scraped_at": "2026-04-01T07:34:00.499526+00:00"
-    },
-    {
-      "brand": "현대",
-      "model": "쏘나타 (DN8) 2.0",
-      "year": "2020",
-      "mileage": "123,594km",
-      "price": "1,250만원",
-      "image": "https://ci.encar.com/carpicture06/pic4156/41568589_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41574650",
-      "scraped_at": "2026-04-01T07:34:00.499539+00:00"
-    },
-    {
-      "brand": "기아",
-      "model": "더 뉴 셀토스 가솔린 1.6 터보 2WD",
-      "year": "2023",
-      "mileage": "15,674km",
-      "price": "2,650만원",
-      "image": "https://ci.encar.com/carpicture09/pic4089/40890834_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40903254",
-      "scraped_at": "2026-04-01T07:34:00.499549+00:00"
+      "mileage": "43,167km",
+      "price": "1,750만원",
+      "image": "https://ci.encar.com/carpicture02/pic4162/41626272_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41626606",
+      "scraped_at": "2026-04-01T08:27:19.732796+00:00"
     },
     {
       "brand": "쉐보레(GM대우)",
-      "model": "더 뉴 스파크 프리미어",
-      "year": "2022",
-      "mileage": "18,207km",
-      "price": "1,220만원",
-      "image": "https://ci.encar.com/carpicture03/pic4173/41733067_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41734398",
-      "scraped_at": "2026-04-01T07:34:00.499557+00:00"
-    },
-    {
-      "brand": "기아",
-      "model": "더 뉴 셀토스 가솔린 1.6 터보 2WD",
-      "year": "2023",
-      "mileage": "27,964km",
-      "price": "2,830만원",
-      "image": "https://ci.encar.com/carpicture06/pic4096/40961835_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40980229",
-      "scraped_at": "2026-04-01T07:34:00.499564+00:00"
-    },
-    {
-      "brand": "현대",
-      "model": "베뉴 1.6 플럭스",
-      "year": "2020",
-      "mileage": "48,090km",
-      "price": "1,670만원",
-      "image": "https://ci.encar.com/carpicture05/pic4115/41154248_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41159511",
-      "scraped_at": "2026-04-01T07:34:00.499581+00:00"
-    },
-    {
-      "brand": "기아",
-      "model": "더 뉴 셀토스 가솔린 2.0 2WD",
-      "year": "2023",
-      "mileage": "29,881km",
-      "price": "3,050만원",
-      "image": "https://ci.encar.com/carpicture04/pic4174/41747023_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41759159",
-      "scraped_at": "2026-04-01T07:34:00.499593+00:00"
-    },
-    {
-      "brand": "쉐보레(GM대우)",
-      "model": "더 뉴 말리부 1.3 터보 프리미어",
-      "year": "2022",
-      "mileage": "70,982km",
-      "price": "2,010만원",
-      "image": "https://ci.encar.com/carpicture09/pic4129/41297558_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41307246",
-      "scraped_at": "2026-04-01T07:34:00.499642+00:00"
+      "model": "트레일블레이저 1.3 터보 2WD",
+      "year": "2021",
+      "mileage": "72,348km",
+      "price": "1,650만원",
+      "image": "https://ci.encar.com/carpicture02/pic4162/41624711_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41625798",
+      "scraped_at": "2026-04-01T08:27:19.732873+00:00"
     },
     {
       "brand": "기아",
       "model": "쏘렌토 4세대 HEV 1.6 2WD",
       "year": "2021",
-      "mileage": "11,906km",
-      "price": "3,530만원",
-      "image": "https://ci.encar.com/carpicture06/pic4156/41567459_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41577416",
-      "scraped_at": "2026-04-01T07:34:00.499654+00:00"
+      "mileage": "106,065km",
+      "price": "2,780만원",
+      "image": "https://ci.encar.com/carpicture01/pic4161/41615806_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41624975",
+      "scraped_at": "2026-04-01T08:27:19.732902+00:00"
     },
     {
-      "brand": "쉐보레(GM대우)",
-      "model": "더 뉴 스파크 프리미어",
+      "brand": "KG모빌리티(쌍용)",
+      "model": "베리 뉴 티볼리 가솔린 1.5 2WD",
       "year": "2022",
-      "mileage": "7,523km",
-      "price": "1,270만원",
-      "image": "https://ci.encar.com/carpicture09/pic4149/41494543_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41503235",
-      "scraped_at": "2026-04-01T07:34:00.499663+00:00"
-    },
-    {
-      "brand": "현대",
-      "model": "더 뉴 코나 가솔린 1.6 터보 2WD",
-      "year": "2022",
-      "mileage": "30,514km",
-      "price": "2,020만원",
-      "image": "https://ci.encar.com/carpicture04/pic4144/41448435_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41455229",
-      "scraped_at": "2026-04-01T07:34:00.499672+00:00"
-    },
-    {
-      "brand": "기아",
-      "model": "더 뉴 스포티지 R 디젤 2WD 노블레스",
-      "year": "2014",
-      "mileage": "107,469km",
-      "price": "790만원",
-      "image": "https://ci.encar.com/carpicture09/pic4109/41093072_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41105234",
-      "scraped_at": "2026-04-01T07:34:00.499681+00:00"
-    },
-    {
-      "brand": "기아",
-      "model": "더 뉴 카니발 4세대 HEV 7인승 하이리무진",
-      "year": "2025",
-      "mileage": "43,910km",
-      "price": "6,150만원",
-      "image": "https://ci.encar.com/carpicture09/pic4109/41092918_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41104813",
-      "scraped_at": "2026-04-01T07:34:00.499690+00:00"
-    },
-    {
-      "brand": "현대",
-      "model": "쏘나타 하이브리드 (DN8) 인스퍼레이션",
-      "year": "2020",
-      "mileage": "110,549km",
-      "price": "1,790만원",
-      "image": "https://ci.encar.com/carpicture08/pic4128/41284179_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41287683",
-      "scraped_at": "2026-04-01T07:34:00.499736+00:00"
-    },
-    {
-      "brand": "기아",
-      "model": "쏘울 부스터 1.6 T-GDI 노블레스",
-      "year": "2021",
-      "mileage": "111,061km",
+      "mileage": "68,078km",
       "price": "1,470만원",
-      "image": "https://ci.encar.com/carpicture09/pic4119/41197365_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41212244",
-      "scraped_at": "2026-04-01T07:34:00.499748+00:00"
-    },
-    {
-      "brand": "르노코리아(삼성)",
-      "model": "QM3 LE",
-      "year": "2014",
-      "mileage": "78,743km",
-      "price": "560만원",
-      "image": "https://ci.encar.com/carpicture04/pic4144/41443391_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41453508",
-      "scraped_at": "2026-04-01T07:34:00.499852+00:00"
-    },
-    {
-      "brand": "쉐보레(GM대우)",
-      "model": "더 뉴 스파크 프리미어",
-      "year": "2021",
-      "mileage": "18,648km",
-      "price": "970만원",
-      "image": "https://ci.encar.com/carpicture06/pic4146/41464820_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41468446",
-      "scraped_at": "2026-04-01T07:34:00.499871+00:00"
-    },
-    {
-      "brand": "기아",
-      "model": "K5 2세대 2.0 SX",
-      "year": "2016",
-      "mileage": "142,556km",
-      "price": "960만원",
-      "image": "https://ci.encar.com/carpicture03/pic4163/41636115_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41645073",
-      "scraped_at": "2026-04-01T07:34:00.499879+00:00"
+      "image": "https://ci.encar.com/carpicture02/pic4162/41624096_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41632526",
+      "scraped_at": "2026-04-01T08:27:19.732927+00:00"
     },
     {
       "brand": "현대",
-      "model": "그랜저 하이브리드 (GN7) 프리미엄",
-      "year": "2025",
-      "mileage": "4,659km",
-      "price": "3,990만원",
-      "image": "https://ci.encar.com/carpicture03/pic4163/41632220_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41645796",
-      "scraped_at": "2026-04-01T07:34:00.499886+00:00"
+      "model": "싼타페 DM 디젤(e-VGT) 2.0 2WD 프리미엄",
+      "year": "2016",
+      "mileage": "127,591km",
+      "price": "1,120만원",
+      "image": "https://ci.encar.com/carpicture02/pic4162/41625147_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41625800",
+      "scraped_at": "2026-04-01T08:27:19.732952+00:00"
     },
     {
       "brand": "기아",
-      "model": "카니발 4세대 9인승 프레스티지",
-      "year": "2021",
-      "mileage": "163,494km",
-      "price": "1,890만원",
-      "image": "https://ci.encar.com/carpicture06/pic4146/41464807_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41468714",
-      "scraped_at": "2026-04-01T07:34:00.499893+00:00"
-    },
-    {
-      "brand": "기아",
-      "model": "모하비 더 마스터 디젤 3.0 4WD 7인승",
-      "year": "2020",
-      "mileage": "165,775km",
-      "price": "2,790만원",
-      "image": "https://ci.encar.com/carpicture06/pic4176/41765082_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41778292",
-      "scraped_at": "2026-04-01T07:34:00.499898+00:00"
-    },
-    {
-      "brand": "KG모빌리티(쌍용)",
-      "model": "티볼리 디젤 LX 2WD",
-      "year": "2017",
-      "mileage": "132,180km",
-      "price": "650만원",
-      "image": "https://ci.encar.com/carpicture08/pic4138/41383573_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41391342",
-      "scraped_at": "2026-04-01T07:34:00.499906+00:00"
-    },
-    {
-      "brand": "KG모빌리티(쌍용)",
-      "model": "티볼리 에어 1.5 A7 2WD",
-      "year": "2023",
-      "mileage": "29,089km",
-      "price": "1,690만원",
-      "image": "https://ci.encar.com/carpicture06/pic4086/40868728_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40879700",
-      "scraped_at": "2026-04-01T07:34:00.499912+00:00"
+      "model": "더 뉴 K5 하이브리드 3세대 프레스티지",
+      "year": "2024",
+      "mileage": "85,413km",
+      "price": "2,639만원",
+      "image": "https://ci.encar.com/carpicture08/pic4168/41686986_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41687070",
+      "scraped_at": "2026-04-01T08:27:19.732977+00:00"
     },
     {
       "brand": "쉐보레(GM대우)",
       "model": "트레일블레이저 1.3 터보 2WD",
       "year": "2022",
-      "mileage": "37,801km",
-      "price": "1,620만원",
-      "image": "https://ci.encar.com/carpicture03/pic4133/41337970_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41348911",
-      "scraped_at": "2026-04-01T07:34:00.499917+00:00"
+      "mileage": "61,945km",
+      "price": "2,160만원",
+      "image": "https://ci.encar.com/carpicture08/pic4168/41684486_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41685206",
+      "scraped_at": "2026-04-01T08:27:19.733012+00:00"
     },
     {
-      "brand": "기아",
-      "model": "셀토스 가솔린 1.6 터보 4WD",
+      "brand": "르노코리아(삼성)",
+      "model": "XM3 1.3 TCe RE 시그니처",
       "year": "2020",
-      "mileage": "91,014km",
-      "price": "1,800만원",
-      "image": "https://ci.encar.com/carpicture10/pic4100/41007425_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41010236",
-      "scraped_at": "2026-04-01T07:34:00.499923+00:00"
+      "mileage": "99,305km",
+      "price": "1,280만원",
+      "image": "https://ci.encar.com/carpicture03/pic4123/41236291_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41238842",
+      "scraped_at": "2026-04-01T08:27:19.733046+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "팰리세이드 디젤 2.2 4WD",
+      "year": "2019",
+      "mileage": "60,631km",
+      "price": "2,990만원",
+      "image": "https://ci.encar.com/carpicture02/pic4122/41224772_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41234445",
+      "scraped_at": "2026-04-01T08:27:19.733078+00:00"
     },
     {
       "brand": "KG모빌리티(쌍용)",
-      "model": "렉스턴 스포츠 디젤 2.2 4WD",
+      "model": "토레스 가솔린 1.5 2WD",
+      "year": "2023",
+      "mileage": "20,476km",
+      "price": "2,190만원",
+      "image": "https://ci.encar.com/carpicture05/pic4085/40858991_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40858995",
+      "scraped_at": "2026-04-01T08:27:19.733113+00:00"
+    },
+    {
+      "brand": "쉐보레(GM대우)",
+      "model": "올란도 LPG LTZ",
+      "year": "2012",
+      "mileage": "126,119km",
+      "price": "440만원",
+      "image": "https://ci.encar.com/carpicture01/pic4081/40818118_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40818384",
+      "scraped_at": "2026-04-01T08:27:19.733146+00:00"
+    },
+    {
+      "brand": "쉐보레(GM대우)",
+      "model": "더 뉴 스파크 프리미어",
+      "year": "2019",
+      "mileage": "83,223km",
+      "price": "740만원",
+      "image": "https://ci.encar.com/carpicture05/pic4085/40853569_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40854495",
+      "scraped_at": "2026-04-01T08:27:19.733180+00:00"
+    },
+    {
+      "brand": "기아",
+      "model": "올 뉴 카니발 9인승 노블레스",
+      "year": "2015",
+      "mileage": "152,235km",
+      "price": "990만원",
+      "image": "https://ci.encar.com/carpicture01/pic4061/40619180_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40620508",
+      "scraped_at": "2026-04-01T08:27:19.733218+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "아반떼 (CN7) 1.6",
+      "year": "2022",
+      "mileage": "117,105km",
+      "price": "1,400만원",
+      "image": "https://ci.encar.com/carpicture02/pic4112/41122296_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41125165",
+      "scraped_at": "2026-04-01T08:27:19.733237+00:00"
+    },
+    {
+      "brand": "기아",
+      "model": "더 뉴 K5 3세대 1.6 터보",
+      "year": "2024",
+      "mileage": "28,084km",
+      "price": "3,190만원",
+      "image": "https://ci.encar.com/carpicture07/pic4107/41073545_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41089172",
+      "scraped_at": "2026-04-01T08:27:19.733275+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "쏘나타 더 브릴리언트 CVVL 모던",
+      "year": "2014",
+      "mileage": "96,744km",
+      "price": "670만원",
+      "image": "https://ci.encar.com/carpicture04/pic4104/41041605_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41051444",
+      "scraped_at": "2026-04-01T08:27:19.733429+00:00"
+    },
+    {
+      "brand": "기아",
+      "model": "레이 프레스티지",
+      "year": "2016",
+      "mileage": "109,232km",
+      "price": "899만원",
+      "image": "https://ci.encar.com/carpicture03/pic4103/41039941_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41048576",
+      "scraped_at": "2026-04-01T08:27:19.733469+00:00"
+    },
+    {
+      "brand": "기아",
+      "model": "카니발 4세대 가솔린 9인승 노블레스",
+      "year": "2023",
+      "mileage": "52,703km",
+      "price": "2,549만원",
+      "image": "https://ci.encar.com/carpicture03/pic4103/41030007_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41044783",
+      "scraped_at": "2026-04-01T08:27:19.733506+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "그랜저 IG 3.0 익스클루시브",
+      "year": "2017",
+      "mileage": "158,476km",
+      "price": "1,280만원",
+      "image": "https://ci.encar.com/carpicture03/pic4103/41039686_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41041994",
+      "scraped_at": "2026-04-01T08:27:19.733542+00:00"
+    },
+    {
+      "brand": "KG모빌리티(쌍용)",
+      "model": "뷰티풀 코란도 디젤 1.6 2WD C5",
+      "year": "2020",
+      "mileage": "26,794km",
+      "price": "1,370만원",
+      "image": "https://ci.encar.com/carpicture03/pic4103/41039475_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41041660",
+      "scraped_at": "2026-04-01T08:27:19.733555+00:00"
+    },
+    {
+      "brand": "쉐보레(GM대우)",
+      "model": "더 넥스트 스파크 LTZ",
       "year": "2018",
-      "mileage": "158,296km",
-      "price": "1,299만원",
-      "image": "https://ci.encar.com/carpicture08/pic4158/41582938_",
-      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41595362",
-      "scraped_at": "2026-04-01T07:34:00.499929+00:00"
+      "mileage": "46,677km",
+      "price": "800만원",
+      "image": "https://ci.encar.com/carpicture06/pic4106/41060308_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41060864",
+      "scraped_at": "2026-04-01T08:27:19.733589+00:00"
+    },
+    {
+      "brand": "KG모빌리티(쌍용)",
+      "model": "더 뉴 렉스턴 스포츠 디젤 2.2 4WD",
+      "year": "2022",
+      "mileage": "45,517km",
+      "price": "2,180만원",
+      "image": "https://ci.encar.com/carpicture05/pic4105/41053217_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41061902",
+      "scraped_at": "2026-04-01T08:27:19.733604+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "쏘나타 디 엣지(DN8) 1.6 터보",
+      "year": "2024",
+      "mileage": "25,726km",
+      "price": "3,020만원",
+      "image": "https://ci.encar.com/carpicture09/pic4089/40898417_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40923141",
+      "scraped_at": "2026-04-01T08:27:19.733932+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "투싼 (NX4) 디젤 2.0 2WD",
+      "year": "2023",
+      "mileage": "109,448km",
+      "price": "2,250만원",
+      "image": "https://ci.encar.com/carpicture04/pic4034/40349209_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40361288",
+      "scraped_at": "2026-04-01T08:27:19.734025+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "제네시스 DH G330 모던",
+      "year": "2016",
+      "mileage": "113,569km",
+      "price": "1,150만원",
+      "image": "https://ci.encar.com/carpicture05/pic4045/40458693_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40459188",
+      "scraped_at": "2026-04-01T08:27:19.734040+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "LF 쏘나타 2.4 스타일",
+      "year": "2015",
+      "mileage": "158,073km",
+      "price": "690만원",
+      "image": "https://ci.encar.com/carpicture03/pic4043/40436643_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40448917",
+      "scraped_at": "2026-04-01T08:27:19.734048+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "올 뉴 투싼 디젤 2.0 2WD",
+      "year": "2017",
+      "mileage": "133,445km",
+      "price": "1,030만원",
+      "image": "https://ci.encar.com/carpicture04/pic4024/40248547_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=40249857",
+      "scraped_at": "2026-04-01T08:27:19.734076+00:00"
+    },
+    {
+      "brand": "기아",
+      "model": "올 뉴 K7 2.4 GDI 프레스티지",
+      "year": "2016",
+      "mileage": "46,813km",
+      "price": "1,490만원",
+      "image": "https://ci.encar.com/carpicture02/pic4172/41729138_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41729983",
+      "scraped_at": "2026-04-01T08:27:19.734087+00:00"
+    },
+    {
+      "brand": "KG모빌리티(쌍용)",
+      "model": "더 뉴 코란도 스포츠 2.2 CX7 4WD",
+      "year": "2017",
+      "mileage": "99,005km",
+      "price": "1,120만원",
+      "image": "https://ci.encar.com/carpicture02/pic4172/41722438_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41724128",
+      "scraped_at": "2026-04-01T08:27:19.734130+00:00"
+    },
+    {
+      "brand": "현대",
+      "model": "더 뉴 그랜저 IG 2.5",
+      "year": "2020",
+      "mileage": "44,933km",
+      "price": "2,930만원",
+      "image": "https://ci.encar.com/carpicture07/pic4167/41675469_001.jpg",
+      "detail_url": "https://www.encar.com/dc/dc_cardetailview.do?carid=41675780",
+      "scraped_at": "2026-04-01T08:27:19.734158+00:00"
     }
   ]
 }
